@@ -7,9 +7,8 @@ commands:
   once:
     - pip install -r requirements.txt
   always:
-    - bash run_gossip.sh
+    - python gossip/temp_main.py
 
 compose:
   environment:
-    MY_ADDRESS: gossip1
-    MY_PORT: 80
+    SERVERS_TO_START: 1
