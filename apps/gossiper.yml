@@ -1,27 +1,10 @@
 repo: github.com/paetling/gossip
 
-
 image: python:3.5
-mount: /gc/analytics-consumer
+mount: /gossip
 
 commands:
   once:
     - pip install -r requirements.txt
-    - bootstrap-postgres.sh || true
   always:
-    - echo "starting analytics consumer"
-    - mkdir -p /var/log/analytics-consumer
-    - python -m analytics_consumer
-
-compose:
-  environment:
-    # These fake keys are required by fake_sqs to initialize, even though it doesnt talk to AWS.
-    AMAZON_ACCESS_KEY: fake-key-id
-    AMAZON_SECRET_KEY: fake-secret-access-key
-    ANALYTICS_QUEUE_NAME: analytics_queue
-    USE_FAKE_ANALYTICS_SQS: "true"
-    FAKE_ANALYTICS_SQS_ENDPOINT: localSQS
-    FAKE_ANALYTICS_SQS_PORT: 3000
-    ANALYTICS_CONSUMER_POSTGRES_HOST: analyticsConsumerPostgres
-    ANALYTICS_CONSUMER_POSGRES_USER: postgres
-    ANALYTICS_CONSUMER_POSGRES_PORT: 5432
+    - python gossip/temp_main.py
