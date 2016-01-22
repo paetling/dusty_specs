@@ -11,6 +11,7 @@ commands:
 
 compose:
   environment:
+    PYTHONDONTWRITEBYTECODE: 1
     SERVERS_TO_START: 1
 
 test:
@@ -23,3 +24,6 @@ test:
           command:
             - nosetests
           default_args: tests
+          compose:
+            environment:
+                PYTHONDONTWRITEBYTECODE: 1
