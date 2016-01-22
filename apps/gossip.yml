@@ -12,7 +12,13 @@ commands:
 compose:
   environment:
     PYTHONDONTWRITEBYTECODE: 1
-    SERVERS_TO_START: 3
+    SERVERS_TO_START: 5
+
+scripts:
+  - name: command
+    description: Runs a command sent to the daemon
+    command:
+      - python gossip/client.py
 
 test:
     image: python:3.5
