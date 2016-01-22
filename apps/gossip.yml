@@ -12,3 +12,14 @@ commands:
 compose:
   environment:
     SERVERS_TO_START: 1
+
+test:
+    image: python:3.5
+    once:
+        - pip install -r requirements.txt
+        - pip install -r test_requirements.txt
+    suites:
+        - name: unit
+          command:
+            - nosetests
+          default_args: tests
