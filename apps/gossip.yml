@@ -7,12 +7,12 @@ commands:
   once:
     - pip install -r requirements.txt
   always:
-    - python gossip/temp_main.py
+    - python gossip/main.py
 
 compose:
   environment:
     PYTHONDONTWRITEBYTECODE: 1
-    SERVERS_TO_START: 1
+    SERVERS_TO_START: 3
 
 test:
     image: python:3.5
